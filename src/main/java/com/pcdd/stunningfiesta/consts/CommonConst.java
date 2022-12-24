@@ -1,4 +1,4 @@
-package com.pcdd.longstrfind.consts;
+package com.pcdd.stunningfiesta.consts;
 
 import java.io.File;
 

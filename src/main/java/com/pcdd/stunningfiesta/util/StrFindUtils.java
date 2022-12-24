@@ -1,11 +1,11 @@
-package com.pcdd.longstrfind.util;
+package com.pcdd.stunningfiesta.util;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.ClassLoaderUtil;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
-import com.pcdd.longstrfind.consts.CommonConst;
+import com.pcdd.stunningfiesta.consts.CommonConst;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 
