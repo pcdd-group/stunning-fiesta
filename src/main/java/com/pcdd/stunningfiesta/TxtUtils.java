@@ -1,24 +1,26 @@
-package com.pcdd.stunningfiesta.util;
+package com.pcdd.stunningfiesta;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.ClassLoaderUtil;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
-import com.pcdd.stunningfiesta.consts.CommonConst;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author pcdd
  */
 @UtilityClass
-public class StrFindUtils {
+public class TxtUtils {
 
     private static final Log log = LogFactory.get();
 
@@ -36,7 +38,7 @@ public class StrFindUtils {
     public String searchContext(String fileName, String keyword, int length) {
         String content = getFileText(fileName);
         int i = content.indexOf(keyword);
-        return i > -1 ? content.substring(i - length, i + length) : "未找到";
+        return i > -1 ? content.substring(i - length, i + length) : null;
     }
 
     public Set<String> fullSearch(String fileName, String regex, String... ignores) {
@@ -47,7 +49,7 @@ public class StrFindUtils {
         for (String ignore : ignores) {
             results.remove(ignore);
         }
-        FileUtil.writeUtf8Lines(results, CommonConst.RESOURCES_PATH + regex + ".txt");
+        FileUtil.writeUtf8Lines(results, Constants.RESOURCES_PATH + regex + ".txt");
         return results;
     }
 
@@ -72,7 +74,7 @@ public class StrFindUtils {
             int i = content.indexOf(e);
             map.put(e, content.substring(i - 100, i + 100));
         });
-        FileUtil.writeUtf8Map(map, FileUtil.newFile(CommonConst.RESOURCES_PATH + regex + ".map.txt"), "：", false);
+        FileUtil.writeUtf8Map(map, FileUtil.newFile(Constants.RESOURCES_PATH + regex + ".map.txt"), "：", false);
         return map;
     }
 
@@ -91,7 +93,7 @@ public class StrFindUtils {
         }
         BufferedInputStream bis = new BufferedInputStream(is);
         byte[] bytes = bis.readAllBytes();
-        String content = new String(bytes, Charset.forName("gbk"));
+        String content = new String(bytes, Charset.forName("GBK"));
         bis.close();
         is.close();
         return content.replaceAll("\\s*|\r|\n|\t", "");
